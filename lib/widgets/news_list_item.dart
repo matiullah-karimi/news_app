@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/model/news.dart';
 
 class NewsListItem extends StatelessWidget {
-  const NewsListItem({Key? key}) : super(key: key);
+  const NewsListItem({
+    Key? key,
+    required this.newsItem,
+  }) : super(key: key);
+  final News newsItem;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.all(0),
-      title: Text('Tensions escalate in the US amid coronavirus pandemic'),
-      subtitle: const Padding(
-        padding: EdgeInsets.only(top: 8.0),
-        child: Text('description'),
+      contentPadding: const EdgeInsets.all(0),
+      title: Text(newsItem.title),
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Text(newsItem.date),
       ),
       leading: Container(
         width: 100,
@@ -18,6 +23,10 @@ class NewsListItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
           borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: NetworkImage(newsItem.image),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
