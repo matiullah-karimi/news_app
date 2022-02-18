@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/widgets/breaking_news.dart';
+import 'package:news_app/widgets/categories.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,22 +34,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Breaking News',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Breaking News',
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
-              child: const BreakingNews(),
-            ),
-          ],
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 3,
+                child: const BreakingNews(),
+              ),
+              const SizedBox(height: 24),
+              const Categories()
+            ],
+          ),
         ),
       ),
     );
