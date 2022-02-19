@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:news_app/model/category.dart';
 import 'package:news_app/model/news.dart';
 import 'package:news_app/state/news_state.dart';
+import 'package:news_app/widgets/categories.dart';
 
 class NewsRepository {
   static Future<NewsState> fetch(int page) async {
@@ -16,6 +18,17 @@ class NewsRepository {
       );
     } catch (e) {
       return NewsState.error();
+    }
+  }
+
+  static Future<List<Category>> fetchCategories() async {
+    try {
+      var response = await Dio()
+          .get('https://ariananews.af/wp-json/wp/v2/categories?per_page=5');
+
+      return (response.data as List).map((e) => Category.fromMap(e)).toList();
+    } catch (e) {
+      return [];
     }
   }
 }
