@@ -33,6 +33,13 @@ class Category {
     );
   }
 
+  factory Category.fromNewsMap(Map<String, dynamic> map) {
+    return Category(
+      id: map['cat_ID'] ?? '',
+      name: map['cat_name'] ?? '',
+    );
+  }
+
   String toJson() => json.encode(toMap());
 
   factory Category.fromJson(String source) =>
