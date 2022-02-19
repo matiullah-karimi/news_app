@@ -23,7 +23,9 @@ class Categories extends HookConsumerWidget {
     );
 
     tabController.addListener(() {
-      ref.read(newsProvider.notifier).loadNews();
+      final categoryId = categoryState.categories[tabController.index].id;
+
+      ref.read(newsProvider.notifier).loadNews(page: 1, category: categoryId);
     });
 
     return Column(
@@ -66,7 +68,7 @@ class Categories extends HookConsumerWidget {
           child: TabBarView(
             controller: tabController,
             children: categoryState.categories
-                .map((category) => const NewsList())
+                .map((category) => NewsList(categoryId: category.id))
                 .toList(),
           ),
         ),

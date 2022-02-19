@@ -2,13 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:news_app/model/category.dart';
 import 'package:news_app/model/news.dart';
 import 'package:news_app/state/news_state.dart';
-import 'package:news_app/widgets/categories.dart';
 
 class NewsRepository {
-  static Future<NewsState> fetch(int page) async {
+  static Future<NewsState> fetch(int page, int category) async {
     try {
       var response = await Dio().get(
-          'https://ariananews.af/wp-json/wp/v2/posts?page=$page&per_page=5');
+          'https://ariananews.af/wp-json/wp/v2/posts?page=$page&categories=$category&per_page=5');
 
       return NewsState.success(
         news: (response.data as List).map((e) => News.fromMap(e)).toList(),
@@ -17,6 +16,7 @@ class NewsRepository {
         page: page,
       );
     } catch (e) {
+      print(e);
       return NewsState.error();
     }
   }

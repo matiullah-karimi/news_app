@@ -21,12 +21,14 @@ class NewsState {
     required this.count,
   });
 
+  bool get hasMore => page < totalPage;
+
   factory NewsState.initial() {
     return NewsState(
       news: [],
       isLoading: false,
       isError: false,
-      page: 0,
+      page: 1,
       totalPage: 0,
       count: 0,
     );
