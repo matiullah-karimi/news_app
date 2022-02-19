@@ -69,7 +69,7 @@ class News {
       description: map['excerpt']['rendered'] ?? '',
       image: map['mobiconnector_feature_image']['source_url'] ?? '',
       date: map['date'] ?? '',
-      author: map['author']?.toString() ?? '',
+      author: map['mobiconnector_author_name'] ?? '',
       content: map['content']['rendered'] ?? '',
       categories: List<Category>.from(
           map['mobiconnector_categories']?.map((x) => Category.fromNewsMap(x))),
