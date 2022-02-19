@@ -49,10 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3,
-                child: const BreakingNews(),
+                child: BreakingNews(),
               ),
               const SizedBox(height: 24),
-              Categories()
+              const Categories()
             ],
           ),
         ),

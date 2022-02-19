@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/model/news.dart';
 
 class BreakingNewsItem extends StatelessWidget {
-  const BreakingNewsItem({Key? key}) : super(key: key);
+  const BreakingNewsItem({Key? key, required this.newsItem}) : super(key: key);
+
+  final News newsItem;
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +13,14 @@ class BreakingNewsItem extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         color: Colors.black,
+        image: DecorationImage(
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.5),
+            BlendMode.dstATop,
+          ),
+          image: NetworkImage(newsItem.image),
+          fit: BoxFit.cover,
+        ),
         borderRadius: BorderRadius.circular(
           16,
         ),
@@ -18,10 +29,27 @@ class BreakingNewsItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Chip(label: Text('Covid-19')),
+          Row(
+            children: [
+              Chip(label: Text(newsItem.categories[0].name)),
+              const SizedBox(width: 8),
+              Icon(
+                Icons.fiber_manual_record,
+                size: 8,
+                color: Colors.grey.shade300,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                newsItem.formattedDate,
+                style: TextStyle(
+                  color: Colors.grey.shade300,
+                ),
+              )
+            ],
+          ),
           const SizedBox(height: 16),
           Text(
-            'The latest on the corona virus pandamic and omicron variant',
+            newsItem.title,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,

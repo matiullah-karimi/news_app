@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:news_app/model/category.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class News {
   String id;
@@ -22,6 +23,10 @@ class News {
     required this.content,
     required this.categories,
   });
+
+  String get formattedDate {
+    return timeago.format(DateTime.parse(date));
+  }
 
   News copyWith({
     String? id,
