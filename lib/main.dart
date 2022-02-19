@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/widgets/breaking_news.dart';
 import 'package:news_app/widgets/categories.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const BreakingNews(),
               ),
               const SizedBox(height: 24),
-              const Categories()
+              Categories()
             ],
           ),
         ),
