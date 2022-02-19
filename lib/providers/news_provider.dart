@@ -1,7 +1,12 @@
+import 'package:news_app/model/news.dart';
 import 'package:news_app/providers/category_provider.dart';
 import 'package:news_app/repositories/news_repo.dart';
 import 'package:news_app/state/news_state.dart';
 import 'package:riverpod/riverpod.dart';
+
+final breakingNewsProvider = FutureProvider<List<News>>((ref) async {
+  return NewsRepository.fetchBreakingNews();
+});
 
 final newsProvider = StateNotifierProvider<NewsNotifier, NewsState>((ref) {
   final categoryState = ref.watch(categoryProvider);
@@ -16,7 +21,7 @@ class NewsNotifier extends StateNotifier<NewsState> {
   }
 
   void loadNews({required int page, required int category}) async {
-    if (state.isLoading || !state.hasMore) return;
+    if (state.isLoading) return;
 
     state = state.copyWith(isLoading: true, page: page);
 
