@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:news_app/model/news.dart';
 import 'package:news_app/widgets/breaking_news_item.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:news_app/widgets/news_details_bottom_bar.dart';
 
 class NewsDetails extends ConsumerWidget {
   const NewsDetails({Key? key, required this.newsItem}) : super(key: key);
@@ -13,6 +14,7 @@ class NewsDetails extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: const NewsDetailsBottomBar(),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
