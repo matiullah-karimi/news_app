@@ -30,18 +30,6 @@ class BottomNavigationBarWidget extends ConsumerWidget {
       unselectedItemColor: Colors.grey.shade500,
       onTap: (index) {
         ref.read(appTabProvider.notifier).changeTab(index);
-        final tab = ref.read(appTabProvider);
-
-        if (tab == currentTab) {
-          return;
-        }
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => tab.screen,
-          ),
-        );
       },
     );
   }
