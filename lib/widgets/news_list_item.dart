@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/news.dart';
+import 'package:news_app/screens/news_details.dart';
 
 class NewsListItem extends StatelessWidget {
   const NewsListItem({
@@ -10,63 +11,70 @@ class NewsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // row with image, title and subtitle
-    return Row(
-      children: [
-        Container(
-          width: 100,
-          height: 80,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              image: NetworkImage(newsItem.image),
-              fit: BoxFit.cover,
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NewsDetails(newsItem: newsItem),
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 100,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: NetworkImage(newsItem.image),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  newsItem.title,
-                  style: TextStyle(
-                    color: Colors.grey.shade900,
-                    fontWeight: FontWeight.w500,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    newsItem.title,
+                    style: TextStyle(
+                      color: Colors.grey.shade900,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      newsItem.author,
-                      style: TextStyle(
-                        color: Colors.grey.shade500,
+                  Row(
+                    children: [
+                      Text(
+                        newsItem.author,
+                        style: TextStyle(
+                          color: Colors.grey.shade500,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    Icon(
-                      Icons.fiber_manual_record,
-                      size: 8,
-                      color: Colors.grey.shade400,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      newsItem.formattedDate,
-                      style: TextStyle(
-                        color: Colors.grey.shade500,
+                      const SizedBox(width: 8),
+                      Icon(
+                        Icons.fiber_manual_record,
+                        size: 8,
+                        color: Colors.grey.shade400,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      const SizedBox(width: 8),
+                      Text(
+                        newsItem.formattedDate,
+                        style: TextStyle(
+                          color: Colors.grey.shade500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
