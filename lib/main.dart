@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/widgets/bottom_navigation_bar.dart';
 import 'package:news_app/widgets/breaking_news.dart';
 import 'package:news_app/widgets/categories.dart';
 
@@ -35,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: const BottomNavigationBarWidget(),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -48,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
-                child: BreakingNews(),
+                height: MediaQuery.of(context).size.height / 3.5,
+                child: const BreakingNews(),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
               const Categories()
             ],
           ),
